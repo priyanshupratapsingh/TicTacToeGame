@@ -8,7 +8,7 @@ const Board = () => {
     const [win, setwin] = useState(false)
     const [draw, setdraw] = useState(true)
     const handleClick= (index) =>{
-        if (state[index] !== null) {
+        if (win === true || state[index] !== null) {
             return;
         }
         const copystate = [...state]
@@ -55,9 +55,9 @@ const Board = () => {
     return (
         <>
         <div className="turn">
-            <h2>{player ? "Player1" : "Player2"} to move</h2>
+            <h2 style={{color:"#198754", padding: "10px 0 5px 0"}}>{player ? "Player1" : "Player2"} to move</h2>
         </div>
-        <div className='board'>
+        <div className='board'style={{padding:"1.6vw"}}>
             <div className="board-row">
                 <Square onClick={()=> handleClick(0)} value={state[0]}/>
                 <Square onClick={()=> handleClick(1)} value={state[1]}/>
@@ -73,10 +73,11 @@ const Board = () => {
                 <Square onClick={()=> handleClick(7)} value={state[7]}/>
                 <Square onClick={()=> handleClick(8)} value={state[8]}/>
             </div>
-            {win ? <Winner play={player ? "Player2" : "Player1"} /> : ""}
-            {draw ? <div className="draw"><h1>It is a Draw</h1></div> : ""}
-            <button onClick={() => reset()}>Play Again</button>
+            {/* <button className="play btn btn-outline-success" onClick={() => reset()}>Play Again</button> */}
         </div>
+
+            {win ?<div className="draw"> <h1>Congratulations, {player ? "Player2" : "Player1"} is the Winner!</h1> <button className="play btn btn-outline-success" onClick={() => reset()}>Play Again</button> </div>: ""}
+            {draw && (!win) ? <div className="draw"><h1>It is a Draw</h1><button className="play btn btn-outline-success" onClick={() => reset()}>Play Again</button></div> : ""}
         </>
 
     )
