@@ -76,7 +76,6 @@ const Board = () => {
             {win ? <Winner play={player ? "Player2" : "Player1"} /> : ""}
             {draw ? <div className="draw"><h1>It is a Draw</h1></div> : ""}
             <button onClick={() => reset()}>Play Again</button>
-            <a href="./Winner.jsx">click</a>
         </div>
         </>
 
